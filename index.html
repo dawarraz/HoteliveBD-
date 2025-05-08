@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HoteliveBD</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Welcome to HoteliveBD</h1>
+  <div id="hotel-list"></div>
+  <script>
+    fetch('/hotels')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('hotel-list').innerHTML = data.map(hotel => `
+          <div>
+            <h2>${hotel.name}</h2>
+            <p>${hotel.location}</p>
+            <p>${hotel.price}৳</p>
+            <img src="${hotel.image}" width="200" />
+          </div>
+        `).join('');
+      });
+  </script>
+</body>
+</html>
